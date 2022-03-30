@@ -11,12 +11,12 @@ package com.mycompany.dev_j110_2_p2;
 public class File {
     private String name; //Имя файла
     private int size; //Размер в байтах
-    private String formatFile; // Формат файла
+    protected String formatFile; // Формат файла
 
-    public File(String name, int size, String formatFile) {
+    public File(String name, int size) {
         setName(name);
         setSize(size);
-        setFormatFile(formatFile);
+
     }
 
     public String getName() {
@@ -44,19 +44,19 @@ public class File {
         return formatFile;
     }
 
-    public void setFormatFile(String formatFile) {
-        if (formatFile != null && formatFile.trim().isEmpty())
-        this.formatFile = formatFile;
-        else
-            throw new IllegalArgumentException("Формат файла не может быть пустой ссылкой, пустым значением или пробелом");
-    }
 
     public void print(){
-        System.out.println();
+        System.out.print(getName() +" | "+ getSize() +" | "+ getFormatFile() + ", ");
     }
 
     public static void printAll(File[] files){
+        System.out.println("---------------------------------------------------------------------------");
+        System.out.println("     File name       |    Size   |  Details");
+        System.out.println("--------------------------------------------");
+
         for (File file: files)
             file.print();
+
+
     }
 }

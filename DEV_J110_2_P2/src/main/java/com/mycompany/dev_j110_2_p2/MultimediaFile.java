@@ -8,14 +8,17 @@ package com.mycompany.dev_j110_2_p2;
  *
  * @author USER
  */
+import static com.mycompany.dev_j110_2_p2.ConvertDuration.timeToString;
+
 public class MultimediaFile extends File{
     private String fileContents; // описание содержащегося в файле
     private int duration; // Длительность
 
-    public MultimediaFile(String name, int size, String formatFile, String fileContents, int duration) {
-        super(name, size, formatFile);
+    public MultimediaFile(String name, int size, String fileContents, int secs) {
+        super(name, size);
         setFileContents(fileContents);
-        setDuration(duration);
+        setDuration(secs);
+        this.formatFile = "audio";
     }
 
     public String getFileContents() {
@@ -33,9 +36,19 @@ public class MultimediaFile extends File{
         return duration;
     }
 
+    public String getDurationToString() {
+        return timeToString (getDuration());
+    }
+
     public void setDuration(int duration) {
         if (duration<0)
             throw new IllegalArgumentException("Длительность мультимедии не может быть меньше нуля");
         this.duration = duration;
+    }
+
+    @Override
+    public void print() {
+        super.print();
+        System.out.println(getFileContents() + ", " + getDurationToString()+ ",");
     }
 }

@@ -12,10 +12,11 @@ public class ImageFile extends File {
     private int width; //Ширина
     private int height; //Высота
 
-    public ImageFile(String name, int size, String formatFile, int width, int height) {
-        super(name, size, formatFile);
+    public ImageFile(String name, int size, int width, int height) {
+        super(name, size);
         setWidth(width);
         setHeight(height);
+        this.formatFile = "image";
     }
 
     public int getWidth() {
@@ -36,5 +37,11 @@ public class ImageFile extends File {
         if (height<1)
             throw new IllegalArgumentException("Размер картинки по высоте должна быть больше нуля");
         this.height = height;
+    }
+
+    @Override
+    public void print() {
+        super.print();
+        System.out.println(getWidth() + "x" +getHeight());
     }
 }
